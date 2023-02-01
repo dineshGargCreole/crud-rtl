@@ -1,12 +1,15 @@
 import { render, screen } from "../../test.utils";
 import Header from "./Header";
+import user from "@testing-library/user-event";
 
 describe("header component", () => {
-  it("should render all items successfully", () => {
+  it("should render all navbar items successfully", () => {
     render(<Header />);
-    // const navBrand = screen.getByRole("generic");
-    // expect(navBrand).toBeInTheDocument();
-    const navItems = screen.getByRole("button", { hidden: true });
-    expect(navItems).toBeInTheDocument();
+    const items = ["Navbar", "Home", "New"];
+    const navItems = screen.getAllByRole("link");
+    expect(navItems.length).toEqual(3);
+    navItems.forEach((item, index) => {
+      expect(item).toHaveTextContent(items[index]);
+    });
   });
 });

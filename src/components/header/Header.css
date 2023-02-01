@@ -1,0 +1,12 @@
+.nav-brand {
+    text-decoration: none;
+    color: #fff;
+}
+
+.nav-brand:hover {
+    color: #fff;
+}
+
+.nav-item {
+    margin-left: 15px;
+}

@@ -1,9 +1,9 @@
-import { ReactElement } from "react";
-import { render, renderOptions } from "@testing-library/react";
-import ProviderRouter from "./providerRouter/ProviderRouter";
+import { render as RTL } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 
-const customRender = (props) =>
-  render(props.ui, { wrapper: ProviderRouter, ...props?.options });
+const render = (component, option = {}) => {
+  return RTL(<BrowserRouter>{component}</BrowserRouter>, option);
+};
 
 export * from "@testing-library/react";
-export { customRender as render };
+export { render };

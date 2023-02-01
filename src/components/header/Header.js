@@ -1,17 +1,24 @@
 import React from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import "./Header.css";
 
 function Header() {
-  const navigate = useNavigate();
   return (
-    <Navbar bg="dark" variant="dark">
-      <Navbar.Brand>Navbar</Navbar.Brand>
+    <Navbar bg="dark" variant="dark" className="nav">
+      <Navbar.Brand>
+        <Link className="nav-brand" to="/">
+          Navbar
+        </Link>
+      </Navbar.Brand>
       <Nav className="me-auto">
-        <Nav.Link>Home</Nav.Link>
-        <Nav.Link>View All</Nav.Link>
-        <Nav.Link>New</Nav.Link>
+        <Link className="nav-brand" to="/">
+          Home
+        </Link>
+        <Link className="nav-brand nav-item" to="/new">
+          New
+        </Link>
       </Nav>
     </Navbar>
   );

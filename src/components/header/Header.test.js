@@ -1,4 +1,5 @@
 import { render, screen } from "../../test.utils";
+// import { render, screen } from "@testing-library/react";
 import Header from "./Header";
 import user from "@testing-library/user-event";
 
@@ -12,4 +13,14 @@ describe("header component", () => {
       expect(item).toHaveTextContent(items[index]);
     });
   });
+
+  // it("route test", async () => {
+  //   user.setup();
+  //   render(<Header />);
+  //   // const { debug } = render(<Header />);
+  //   // console.log("..........", debug());
+  //   const newItem = screen.getByText("New");
+  //   await user.click(newItem);
+  //   expect(newItem).toBeCalledTimes(1);
+  // });
 });

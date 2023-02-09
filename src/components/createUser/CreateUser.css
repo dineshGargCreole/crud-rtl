@@ -3,3 +3,10 @@
 .text {
     text-align: center;
 }
+
+.text-container {
+    max-width: 500px;
+    margin: auto;
+    margin-left: auto;
+    margin-top: 5px;
+}

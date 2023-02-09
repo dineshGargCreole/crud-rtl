@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./UserForm.css";
 
-function UserForm() {
+function UserForm(props) {
   const initialValues = {
     name: "",
     username: "",
@@ -20,7 +20,7 @@ function UserForm() {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values) => {
-        console.log(values);
+        props.onSubmit(values);
       }}
     >
       {({ handleSubmit, handleChange, values }) => {
@@ -52,7 +52,7 @@ function UserForm() {
                 id={"username"}
               />
             </Form.Group>
-            <Form.Group className="mb-3">                
+            <Form.Group className="mb-3">
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 type="email"

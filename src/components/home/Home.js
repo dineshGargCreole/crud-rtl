@@ -9,7 +9,7 @@ function Home() {
     // axios.get("http://localhost:3000/users").then((res) => setUsers(res.data));
     fetch("http://localhost:3000/users")
       .then((res) => res.json())
-      .then((res) => setUsers(res.data));
+      .then((res) => setUsers(res));
   }, []);
 
   return (

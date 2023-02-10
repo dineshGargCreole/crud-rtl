@@ -1,10 +1,12 @@
 import { rest } from "msw";
 
-let users = [];
+let users = [
+  { id: 1, name: "foo", username: "foo-username", email: "foo@gmail.com" },
+  { id: 2, name: "zoo", username: "zoo-username", email: "zoo@gmail.com" },
+];
 
 export const handlers = [
-  rest.post("http://localhost:3000/users", (req, res, ctx) => {
-    const id = users[users.length - 1]?.id + 1 || 1;
-    console.log("req", req);
+  rest.get("http://localhost:3000/users", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ data: users }));
   }),
 ];

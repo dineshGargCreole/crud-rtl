@@ -17,19 +17,21 @@ function CreateUser() {
   };
 
   return (
-    <div>
-      {status && (
-        <Alert
-          key={"primary"}
-          variant={"primary"}
-          className="text-container text"
-        >
-          User Created successfully !!
-        </Alert>
-      )}
-      <h1 className="text">Create a New User</h1>
-      <UserForm onSubmit={createUser} />
-    </div>
+    <>
+      <div>
+        {status && (
+          <Alert
+            key={"primary"}
+            variant={"primary"}
+            className="text-container text"
+          >
+            User Created successfully !!
+          </Alert>
+        )}
+        <h1 className="text">Create a New User</h1>
+        <UserForm onSubmit={createUser} />
+      </div>
+    </>
   );
 }
 

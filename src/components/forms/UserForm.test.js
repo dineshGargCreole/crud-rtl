@@ -1,4 +1,5 @@
 import { render, screen } from "../../test.utils";
+import { waitFor } from "@testing-library/react";
 import UserForm from "./UserForm";
 import user from "@testing-library/user-event";
 
@@ -8,7 +9,7 @@ describe("user form component", () => {
     const inputElements = screen.getAllByRole("textbox");
     expect(inputElements).toHaveLength(3);
 
-    const nameInput = screen.getByPlaceholderText("Enter full name");
+    const nameInput = screen.getByPlaceholderText("Enter name");
     expect(nameInput).toBeInTheDocument();
 
     const usernameInput = screen.getByPlaceholderText("Enter username");
@@ -23,20 +24,22 @@ describe("user form component", () => {
 
   it("should form submit succefully", async () => {
     user.setup();
-    const onSubmit = jest.fn();
-    render(<UserForm onSubmit={onSubmit} />);
+    const handleSubmit = jest.fn();
+    render(<UserForm onSubmit={handleSubmit} />);
 
-    const nameInput = screen.getByPlaceholderText("Enter full name");
-    await user.type(nameInput, "foo");
-
-    const usernameInput = screen.getByPlaceholderText("Enter username");
-    await user.type(usernameInput, "foo-username");
-
-    const emailInput = screen.getByPlaceholderText("Enter email");
-    await user.type(emailInput, "foo@yopmail.com");
-
-    const submitButton = screen.getByRole("button", { name: "Submit" });
-    await user.click(submitButton);
-    expect(onSubmit).toHaveBeenCalled();
+    await user.type(screen.getByPlaceholderText("Enter name"), "John");
+    await user.type(screen.getByPlaceholderText("Enter username"), "Dee");
+    await user.type(
+      screen.getByPlaceholderText("Enter email"),
+      "john.dee@someemail.com"
+    );
+    await user.click(screen.getByRole("button", { name: /submit/i }));
+    await waitFor(() =>
+      expect(handleSubmit).toHaveBeenCalledWith({
+        email: "john.dee@someemail.com",
+        name: "John",
+        username: "Dee",
+      })
+    );
   });
 });

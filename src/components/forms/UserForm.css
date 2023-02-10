@@ -3,3 +3,7 @@
     margin: auto;
     margin-left: auto;
 }
+
+.error {
+    color: red;
+}

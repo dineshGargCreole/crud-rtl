@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik } from "formik";
+import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -11,7 +11,10 @@ function UserForm(props) {
     username: "",
     email: "",
   };
+
   const validationSchema = Yup.object().shape({
+    name: Yup.string().required(),
+    username: Yup.string().required(),
     email: Yup.string().email("Invalid Email").required(),
   });
 
@@ -23,7 +26,7 @@ function UserForm(props) {
         props.onSubmit(values);
       }}
     >
-      {({ handleSubmit, handleChange, values }) => {
+      {({ handleSubmit, handleChange, values, errors }) => {
         return (
           <Form
             onSubmit={(e) => {
@@ -33,14 +36,15 @@ function UserForm(props) {
             className={"form"}
           >
             <Form.Group className="mb-3">
-              <Form.Label>Full Name</Form.Label>
+              <Form.Label>Name</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter full name"
+                placeholder="Enter name"
                 onChange={handleChange}
                 name={"name"}
                 id={"name"}
               />
+              <ErrorMessage component="div" name="name" className="error" />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Username</Form.Label>
@@ -51,6 +55,7 @@ function UserForm(props) {
                 name={"username"}
                 id={"username"}
               />
+              <ErrorMessage name="username" component="div" className="error" />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Email address</Form.Label>
@@ -61,6 +66,7 @@ function UserForm(props) {
                 name={"email"}
                 id={"email"}
               />
+              <ErrorMessage name="email" component="div" className="error" />
             </Form.Group>
             <Button variant="primary" type="submit">
               Submit

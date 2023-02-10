@@ -41,6 +41,11 @@
       "last 1 safari version"
     ]
   },
+  "jest": {
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
+  },
   "devDependencies": {
     "@testing-library/user-event": "^14.4.3",
     "msw": "^1.0.0"
